@@ -1,26 +1,56 @@
 import React from 'react';
 import './seat.css';
+import { Carriage } from '../carriage/carriage.jsx';
+import { seats } from '../carriage/carriage.jsx';
 
-
+  
 export class Seat extends React.Component {
+  static selected = 1;
+  static previous = 0;
   state = {
-    occupancy: this.props.occupancy,
+      occupancy: this.props.occupancy,
+
   }
 
+  // selectOnOpen = () => {
+  //   seats.forEach(row => {
+  //     row.forEach(seat => {
+  //       if(seat.occupancy === 'free'){
+  //         console.log('param-pa-pa-paaa!');
+  //       }
+  //     })
+  //   });
+  // }
+
+
   handleClick = () => {
-    console.log('click');
+    // console.log('click');
     if (this.state.occupancy === 'free') {
+      // Carriage.state.seats.forEach(row => {
+      //   row.forEach(seat => {
+      //     if (seat.occupancy === 'selected'){
+      //       seat.occupancy = 'free';
+      //     };
+      //   });
+      // });
+      // Object.forEach(obj => {
+      //   console.log(obj.state.seat.occupancy);
+      // });
+      Seat.previous = Seat.selected;
+      Seat.selected = this.props.seatNumber;
+      console.log(Seat.selected+"  "+Seat.previous);
       this.setState({ occupancy: 'selected' });
     } else if (this.state.occupancy === 'selected') {
       this.setState({ occupancy: 'free' });
     }
+
   }
   
   render() {
     let toggleClass = 'train-seat__seat--';
-    if (this.state.occupancy === 'free') {
+    if (this.state.occupancy === 'free') {                          // && this.props.seatNumber != Seat.selected
       toggleClass += 'free';
-    } else if (this.state.occupancy === 'selected') {
+    } else if (this.state.occupancy === 'selected') {               // && this.props.seatNumber == Seat.selected
       toggleClass += 'selected';
     } else if (this.state.occupancy === 'occupied') {
       toggleClass += 'occupied';

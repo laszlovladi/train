@@ -2,20 +2,41 @@ import React from 'react';
 import { Seat } from '../seat/seat.jsx';
 import './carriage.css';
 
+// export let seats = [
+//   [{occupancy: 'selected'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'occupied'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'occupied'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'}],
+//   [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}]
+//   ];
+
+
 export class Carriage extends React.Component {
-  state = {seats: [
-    [{occupancy: 'selected'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'occupied'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'occupied'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'}],
-    [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}]
-    ]
+  state = {
+    seats: [
+      [{occupancy: 'selected'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'occupied'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'occupied'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'occupied'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'occupied'}],
+      [{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'},{occupancy: 'free'}]
+      ],
+    // selectedRow: 0,
+    // selectedSeat: 0
   };
+
+  onStateChange = () => {
+    console.log('state changed');
+  }
   
   render() {
     return (
