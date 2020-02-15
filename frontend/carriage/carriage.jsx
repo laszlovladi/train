@@ -15,15 +15,13 @@ export let seats = [
   ['free', 'free', 'free', 'free']
   ];
 
-export default {
-  seats,  
-}
-
 export class Carriage extends React.Component {
   static previous = 0;
 
   state = {
     seats: seats,
+    seatsToBuy: 1,
+    seatsToBuyArr: [],
   };
   
   switch = (row, i, j) => {
@@ -40,9 +38,31 @@ export class Carriage extends React.Component {
     }
   }
 
+  increment(){
+    if (this.state.seatsToBuy < seats.length*4){
+      this.state.seatsToBuy += 1;
+      this.setState({seatsToBuy: this.state.seatsToBuy});
+    }
+  }
+
+  decrement(){
+    if (this.state.seatsToBuy > 1){
+      this.state.seatsToBuy -= 1;
+      this.setState({seatsToBuy: this.state.seatsToBuy});
+    }
+  }
+
   render() {
     return (
       <div className="carriage">
+        <div className="toBuy">
+          <button className="minus" onClick={() => {this.decrement()}}> - </button>
+          <div className="seatsToBuy">
+            {this.state.seatsToBuy}
+          </div>
+          <button className="plus" onClick={() => {this.increment()}}> + </button>
+        </div>
+        <>
         {
           this.state.seats.map((row, i) => {
             return (
@@ -80,6 +100,7 @@ export class Carriage extends React.Component {
             );
           })
         }
+        </>
       </div>
     );
   }

@@ -1,0 +1,31 @@
+.toBuy{
+  display: flex;
+  flex-direction: row;
+}
+
+.plus,
+.minus{
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  /* padding: 0.5em; */
+  background-color: lightgray;
+  border: 1px solid lightgrey;
+  border-radius: 0.75em;
+}
+
+.plus:hover,
+.minus:hover{
+  /* width: 1.5em;
+  height: 1.5em;
+  text-align: center; */
+  /* padding: 0.5em; */
+  background-color: darkgray;
+  border: 1px solid darkgray;
+  /* border-radius: 0.75em; */
+}
+
+
+.seatsToBuy{
+  padding: 0 0.5em;
+}
