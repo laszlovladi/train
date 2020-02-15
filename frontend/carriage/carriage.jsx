@@ -26,29 +26,32 @@ export class Carriage extends React.Component {
   
   switch = (row, i, j) => {
     if (row[j-1] === 'free') {
-      if (Carriage.previous !== 0){
-        seats[Math.floor((Carriage.previous-1)/4)][(Carriage.previous-1)%4] = "free";
-      }
       seats[i][j-1] = "selected";
       this.setState({seats: seats});
-      Carriage.previous = (i*4+j);
+      this.state.seatsToBuyArr.push(i*4+j);
+      if (this.state.seatsToBuyArr.length > this.state.seatsToBuy) {
+        let deletedSeat = this.state.seatsToBuyArr.shift(0);
+        seats[Math.floor((deletedSeat-1)/4)][(deletedSeat-1)%4] = "free";
+      }
     } else if (row[j-1] === 'selected') {
       seats[i][j-1] = "free";
+      let deletedSeat = this.state.seatsToBuyArr.splice(this.state.seatsToBuyArr.indexOf(i*4+j), 1);
       this.setState({seats: seats});
     }
   }
 
   increment(){
     if (this.state.seatsToBuy < seats.length*4){
-      this.state.seatsToBuy += 1;
-      this.setState({seatsToBuy: this.state.seatsToBuy});
+      this.setState({seatsToBuy: ++this.state.seatsToBuy});
     }
   }
 
   decrement(){
     if (this.state.seatsToBuy > 1){
-      this.state.seatsToBuy -= 1;
-      this.setState({seatsToBuy: this.state.seatsToBuy});
+      this.setState({seatsToBuy: --this.state.seatsToBuy});
+      let deletedSeat = this.state.seatsToBuyArr.shift(0);
+      seats[Math.floor((deletedSeat-1)/4)][(deletedSeat-1)%4] = "free";
+    this.setState({seats: seats});
     }
   }
 
