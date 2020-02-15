@@ -1,69 +1,31 @@
 import React from 'react';
 import './seat.css';
-import { Carriage } from '../carriage/carriage.jsx';
-import { seats } from '../carriage/carriage.jsx';
 
   
 export class Seat extends React.Component {
-  static selected = 1;
-  static previous = 0;
-  state = {
-      occupancy: this.props.occupancy,
-
-  }
-
-  // selectOnOpen = () => {
-  //   seats.forEach(row => {
-  //     row.forEach(seat => {
-  //       if(seat.occupancy === 'free'){
-  //         console.log('param-pa-pa-paaa!');
-  //       }
-  //     })
-  //   });
-  // }
-
 
   handleClick = () => {
-    // console.log('click');
-    if (this.state.occupancy === 'free') {
-      // Carriage.state.seats.forEach(row => {
-      //   row.forEach(seat => {
-      //     if (seat.occupancy === 'selected'){
-      //       seat.occupancy = 'free';
-      //     };
-      //   });
-      // });
-      // Object.forEach(obj => {
-      //   console.log(obj.state.seat.occupancy);
-      // });
-      Seat.previous = Seat.selected;
-      Seat.selected = this.props.seatNumber;
-      console.log(Seat.selected+"  "+Seat.previous);
-      this.setState({ occupancy: 'selected' });
-    } else if (this.state.occupancy === 'selected') {
-      this.setState({ occupancy: 'free' });
-    }
-
+    this.props.handleClick();
   }
-  
+
   render() {
     let toggleClass = 'train-seat__seat--';
-    if (this.state.occupancy === 'free') {                          // && this.props.seatNumber != Seat.selected
+    if (this.props.occupancy === 'free') {                          
       toggleClass += 'free';
-    } else if (this.state.occupancy === 'selected') {               // && this.props.seatNumber == Seat.selected
+    } else if (this.props.occupancy === 'selected') {               
       toggleClass += 'selected';
-    } else if (this.state.occupancy === 'occupied') {
+    } else if (this.props.occupancy === 'occupied') {
       toggleClass += 'occupied';
     }
 
     return (
-      <svg onClick={this.handleClick}
+      <svg onClick={()=>{this.props.handleClick()}}
         className="train-seat"
         width="100" 
         height="100" 
         viewBox="0 0 100 100"
         >
-        <g className={`train-seat__seat `+toggleClass}>             {/*                 free occupied selected*/}
+        <g className={`train-seat__seat `+toggleClass}>            
         <rect x="10" y="15" width="80" height="70" rx="15" ry="15" />
         <rect x="30" y="10" width="52" height="15" rx="3" ry="3" />
         <rect x="30" y="75" width="52" height="15" rx="3" ry="3" />
